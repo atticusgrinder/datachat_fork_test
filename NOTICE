@@ -1,0 +1,16 @@
+Datachat
+Copyright 2026 Gazer Labs, LLC
+
+This product includes software developed by Gazer Labs, LLC
+(https://gazerlabs.com).
+
+This software is licensed under the Apache License, Version 2.0 (see LICENSE).
+
+Datachat depends on third-party software, each under its own license.
+See `backend/pyproject.toml` and `frontend/package.json` for the
+authoritative dependency lists.
+
+The hosted version of Datachat at https://datachat.gazerlabs.com is operated
+by Gazer Labs, LLC; the legal terms in `frontend/src/pages/SecurityPage.tsx`
+and `frontend/src/pages/TermsPage.tsx` are written for that hosted service.
+Self-hosters should replace or remove those pages for their own deployments.

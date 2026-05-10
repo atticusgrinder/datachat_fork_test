@@ -1,0 +1,540 @@
+/**
+ * Global CSS / Design System
+ *
+ * Tailwind directives, CSS custom properties for theming, and utility classes.
+ * Defines all colors (HSL), spacing, and base styles for light/dark modes.
+ */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 0 0% 10%;
+
+    --card: 0 0% 98%;
+    --card-foreground: 0 0% 10%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 10%;
+
+    --primary: 0 0% 20%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 0 0% 96%;
+    --secondary-foreground: 0 0% 10%;
+
+    --muted: 0 0% 96%;
+    --muted-foreground: 0 0% 45%;
+
+    --accent: 210 15% 92%;
+    --accent-foreground: 0 0% 10%;
+
+    --destructive: 0 63% 55%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 0 0% 90%;
+    --input: 0 0% 96%;
+    --ring: 0 0% 70%;
+
+    --radius: 0.75rem;
+
+    --user-message: 210 20% 95%;
+    --user-message-foreground: 0 0% 10%;
+
+    --ai-message: 32 20% 95%;
+    --ai-message-foreground: 0 0% 15%;
+
+    --sidebar-background: 0 0% 100%;
+    --sidebar-foreground: 0 0% 10%;
+    --sidebar-primary: 0 0% 20%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 0 0% 96%;
+    --sidebar-accent-foreground: 0 0% 10%;
+    --sidebar-border: 0 0% 90%;
+    --sidebar-ring: 0 0% 70%;
+  }
+
+  .dark {
+    --background: 0 0% 8%;
+    --foreground: 0 0% 95%;
+
+    --card: 0 0% 16%;
+    --card-foreground: 0 0% 95%;
+
+    --popover: 0 0% 16%;
+    --popover-foreground: 0 0% 95%;
+
+    --primary: 0 0% 24%;
+    --primary-foreground: 0 0% 95%;
+
+    --secondary: 0 0% 16%;
+    --secondary-foreground: 0 0% 95%;
+
+    --muted: 0 0% 16%;
+    --muted-foreground: 0 0% 60%;
+
+    --accent: 240 20% 20%;
+    --accent-foreground: 0 0% 95%;
+
+    --destructive: 0 63% 55%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 0 0% 24%;
+    --input: 0 0% 16%;
+    --ring: 0 0% 30%;
+
+    --sidebar-background: 0 0% 8%;
+    --sidebar-foreground: 0 0% 95%;
+    --sidebar-primary: 0 0% 24%;
+    --sidebar-primary-foreground: 0 0% 95%;
+    --sidebar-accent: 0 0% 16%;
+    --sidebar-accent-foreground: 0 0% 95%;
+    --sidebar-border: 0 0% 24%;
+    --sidebar-ring: 0 0% 30%;
+
+    --user-message: 240 20% 20%;
+    --user-message-foreground: 0 0% 95%;
+
+    --ai-message: 0 0% 18%;
+    --ai-message-foreground: 0 0% 90%;
+  }
+
+  /* ── Dark-based themes ── */
+
+  .dark.theme-midnight-ocean {
+    --background: 220 40% 8%;
+    --foreground: 200 20% 92%;
+
+    --card: 220 35% 14%;
+    --card-foreground: 200 20% 92%;
+
+    --popover: 220 35% 14%;
+    --popover-foreground: 200 20% 92%;
+
+    --primary: 185 60% 50%;
+    --primary-foreground: 220 40% 8%;
+
+    --secondary: 220 30% 16%;
+    --secondary-foreground: 200 20% 92%;
+
+    --muted: 220 30% 16%;
+    --muted-foreground: 200 15% 55%;
+
+    --accent: 200 40% 20%;
+    --accent-foreground: 200 20% 92%;
+
+    --destructive: 0 63% 55%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 220 25% 22%;
+    --input: 220 30% 16%;
+    --ring: 185 60% 50%;
+
+    --sidebar-background: 220 40% 7%;
+    --sidebar-foreground: 200 20% 92%;
+    --sidebar-primary: 185 60% 50%;
+    --sidebar-primary-foreground: 220 40% 8%;
+    --sidebar-accent: 200 40% 20%;
+    --sidebar-accent-foreground: 200 20% 92%;
+    --sidebar-border: 220 25% 22%;
+    --sidebar-ring: 185 60% 50%;
+
+    --user-message: 200 40% 18%;
+    --user-message-foreground: 200 20% 92%;
+
+    --ai-message: 220 30% 14%;
+    --ai-message-foreground: 200 15% 85%;
+  }
+
+  .dark.theme-emerald-dusk {
+    --background: 150 30% 7%;
+    --foreground: 140 15% 90%;
+
+    --card: 150 25% 13%;
+    --card-foreground: 140 15% 90%;
+
+    --popover: 150 25% 13%;
+    --popover-foreground: 140 15% 90%;
+
+    --primary: 155 55% 45%;
+    --primary-foreground: 150 30% 7%;
+
+    --secondary: 150 20% 15%;
+    --secondary-foreground: 140 15% 90%;
+
+    --muted: 150 20% 15%;
+    --muted-foreground: 140 10% 52%;
+
+    --accent: 155 35% 18%;
+    --accent-foreground: 140 15% 90%;
+
+    --destructive: 0 63% 55%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 150 20% 20%;
+    --input: 150 20% 15%;
+    --ring: 155 55% 45%;
+
+    --sidebar-background: 150 30% 6%;
+    --sidebar-foreground: 140 15% 90%;
+    --sidebar-primary: 155 55% 45%;
+    --sidebar-primary-foreground: 150 30% 7%;
+    --sidebar-accent: 155 35% 18%;
+    --sidebar-accent-foreground: 140 15% 90%;
+    --sidebar-border: 150 20% 20%;
+    --sidebar-ring: 155 55% 45%;
+
+    --user-message: 155 30% 16%;
+    --user-message-foreground: 140 15% 90%;
+
+    --ai-message: 150 20% 13%;
+    --ai-message-foreground: 140 10% 82%;
+  }
+
+  .dark.theme-sunset-noir {
+    --background: 30 10% 8%;
+    --foreground: 35 15% 90%;
+
+    --card: 30 10% 14%;
+    --card-foreground: 35 15% 90%;
+
+    --popover: 30 10% 14%;
+    --popover-foreground: 35 15% 90%;
+
+    --primary: 38 80% 55%;
+    --primary-foreground: 30 10% 8%;
+
+    --secondary: 30 8% 16%;
+    --secondary-foreground: 35 15% 90%;
+
+    --muted: 30 8% 16%;
+    --muted-foreground: 35 10% 52%;
+
+    --accent: 35 30% 18%;
+    --accent-foreground: 35 15% 90%;
+
+    --destructive: 0 63% 55%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 30 12% 22%;
+    --input: 30 8% 16%;
+    --ring: 38 80% 55%;
+
+    --sidebar-background: 30 10% 7%;
+    --sidebar-foreground: 35 15% 90%;
+    --sidebar-primary: 38 80% 55%;
+    --sidebar-primary-foreground: 30 10% 8%;
+    --sidebar-accent: 35 30% 18%;
+    --sidebar-accent-foreground: 35 15% 90%;
+    --sidebar-border: 30 12% 22%;
+    --sidebar-ring: 38 80% 55%;
+
+    --user-message: 35 25% 16%;
+    --user-message-foreground: 35 15% 90%;
+
+    --ai-message: 30 8% 14%;
+    --ai-message-foreground: 35 10% 82%;
+  }
+
+  /* ── Light-based themes ── */
+
+  .theme-rose-garden {
+    --background: 345 30% 97%;
+    --foreground: 345 20% 15%;
+
+    --card: 345 25% 94%;
+    --card-foreground: 345 20% 15%;
+
+    --popover: 345 30% 97%;
+    --popover-foreground: 345 20% 15%;
+
+    --primary: 340 55% 55%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 345 20% 93%;
+    --secondary-foreground: 345 20% 15%;
+
+    --muted: 345 15% 93%;
+    --muted-foreground: 345 10% 45%;
+
+    --accent: 340 30% 90%;
+    --accent-foreground: 345 20% 15%;
+
+    --destructive: 0 63% 55%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 340 20% 88%;
+    --input: 345 20% 93%;
+    --ring: 340 55% 55%;
+
+    --sidebar-background: 345 25% 96%;
+    --sidebar-foreground: 345 20% 15%;
+    --sidebar-primary: 340 55% 55%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 340 30% 90%;
+    --sidebar-accent-foreground: 345 20% 15%;
+    --sidebar-border: 340 20% 88%;
+    --sidebar-ring: 340 55% 55%;
+
+    --user-message: 340 30% 92%;
+    --user-message-foreground: 345 20% 15%;
+
+    --ai-message: 345 20% 95%;
+    --ai-message-foreground: 345 15% 20%;
+  }
+
+  .theme-arctic-frost {
+    --background: 210 35% 97%;
+    --foreground: 215 25% 12%;
+
+    --card: 210 30% 94%;
+    --card-foreground: 215 25% 12%;
+
+    --popover: 210 35% 97%;
+    --popover-foreground: 215 25% 12%;
+
+    --primary: 220 65% 50%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 210 25% 93%;
+    --secondary-foreground: 215 25% 12%;
+
+    --muted: 210 20% 93%;
+    --muted-foreground: 215 15% 42%;
+
+    --accent: 210 35% 90%;
+    --accent-foreground: 215 25% 12%;
+
+    --destructive: 0 63% 55%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 210 25% 88%;
+    --input: 210 25% 93%;
+    --ring: 220 65% 50%;
+
+    --sidebar-background: 210 30% 96%;
+    --sidebar-foreground: 215 25% 12%;
+    --sidebar-primary: 220 65% 50%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 210 35% 90%;
+    --sidebar-accent-foreground: 215 25% 12%;
+    --sidebar-border: 210 25% 88%;
+    --sidebar-ring: 220 65% 50%;
+
+    --user-message: 215 35% 92%;
+    --user-message-foreground: 215 25% 12%;
+
+    --ai-message: 210 25% 95%;
+    --ai-message-foreground: 215 20% 18%;
+  }
+
+  .theme-sandstone {
+    --background: 35 30% 96%;
+    --foreground: 30 20% 14%;
+
+    --card: 35 25% 92%;
+    --card-foreground: 30 20% 14%;
+
+    --popover: 35 30% 96%;
+    --popover-foreground: 30 20% 14%;
+
+    --primary: 16 60% 48%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 35 20% 91%;
+    --secondary-foreground: 30 20% 14%;
+
+    --muted: 35 15% 91%;
+    --muted-foreground: 30 10% 44%;
+
+    --accent: 30 30% 88%;
+    --accent-foreground: 30 20% 14%;
+
+    --destructive: 0 63% 55%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 35 20% 86%;
+    --input: 35 20% 91%;
+    --ring: 16 60% 48%;
+
+    --sidebar-background: 35 25% 94%;
+    --sidebar-foreground: 30 20% 14%;
+    --sidebar-primary: 16 60% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 30 30% 88%;
+    --sidebar-accent-foreground: 30 20% 14%;
+    --sidebar-border: 35 20% 86%;
+    --sidebar-ring: 16 60% 48%;
+
+    --user-message: 30 30% 90%;
+    --user-message-foreground: 30 20% 14%;
+
+    --ai-message: 35 20% 93%;
+    --ai-message-foreground: 30 15% 20%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    font-size: 90%;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* ── Chart / Visualization Styles (Tremor-inspired) ── */
+
+.chart-tooltip {
+  background: hsl(var(--popover));
+  border: 1px solid hsl(var(--border));
+  border-radius: 8px;
+  padding: 8px 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+.dark .chart-tooltip {
+  background: hsl(0 0% 12%);
+  border-color: hsl(0 0% 20%);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+}
+
+.chart-tooltip-label {
+  font-weight: 500;
+  color: hsl(var(--foreground));
+  margin-bottom: 4px;
+  font-size: 12px;
+}
+
+.chart-tooltip-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 1px 0;
+}
+
+.chart-tooltip-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.chart-tooltip-name {
+  color: hsl(var(--muted-foreground));
+  font-size: 11px;
+}
+
+.chart-tooltip-value {
+  color: hsl(var(--foreground));
+  font-weight: 600;
+  font-size: 12px;
+  margin-left: auto;
+}
+
+/* Chart card styling */
+.chart-card {
+  border: 1px solid hsl(var(--border));
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.chart-card-header {
+  padding: 12px 16px 8px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.chart-card-title {
+  font-size: 13px;
+  font-weight: 500;
+  color: hsl(var(--foreground));
+}
+
+.chart-card-badge {
+  font-size: 10px;
+  padding: 2px 8px;
+  border-radius: 9999px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+
+/* Loading shimmer animation */
+.loading-shimmer {
+  background: linear-gradient(
+    90deg,
+    #374151 25%,
+    #6B7280 50%,
+    #374151 75%
+  );
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 1.5s infinite;
+}
+
+.dark .loading-shimmer {
+  background: linear-gradient(
+    90deg,
+    #9CA3AF 25%,
+    #E5E7EB 50%,
+    #9CA3AF 75%
+  );
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* Blinking cursor for streaming text */
+.streaming-cursor::after {
+  content: "\25AE";
+  display: inline;
+  animation: blink 0.7s step-end infinite;
+  color: hsl(var(--foreground));
+  font-size: 0.85em;
+  margin-left: 1px;
+  vertical-align: baseline;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* Fade-in animation for welcome screen */
+.animate-fade-in {
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

@@ -1,0 +1,62 @@
+# Dev server with hot reload
+run:
+    uv run uvicorn app.main:app --reload --port 8000
+
+# Install dependencies
+install:
+    uv sync
+
+# Install dependencies including dev tools (pytest, etc.)
+install-dev:
+    uv sync --extra dev
+
+# Add a dependency
+add *args:
+    uv add {{args}}
+
+# Run tests
+test *args:
+    uv run pytest {{args}}
+
+# Run tests with coverage
+test-cov *args:
+    uv run pytest --cov=app --cov-report=term-missing {{args}}
+
+# Test a warehouse connection
+test-connection id:
+    uv run python -c "import httpx, asyncio; print(asyncio.run(httpx.AsyncClient().post('http://localhost:8000/api/warehouse/{{id}}/test')).json())"
+
+# Open API docs in browser
+docs:
+    open http://localhost:8000/docs
+
+# Run all pending migrations
+migrate:
+    uv run alembic upgrade head
+
+# Rollback last migration
+migrate-down:
+    uv run alembic downgrade -1
+
+# Generate a new migration from model changes
+migrate-gen message:
+    uv run alembic revision --autogenerate -m "{{message}}"
+
+# Show migration history
+migrate-history:
+    uv run alembic history
+
+# Stamp DB at a revision without running it (for existing DBs)
+migrate-stamp rev="001":
+    uv run alembic stamp {{rev}}
+
+# Show current env config (without secrets)
+env:
+    @echo "Environment variables loaded from .env:"
+    @grep -v '^#' .env 2>/dev/null | grep -v '^$$' | sed 's/=.*/=***/' || echo "No .env file found. Copy .env.example to .env to get started."
+
+# Copy .env.example to .env if it doesn't exist
+setup:
+    @if [ ! -f .env ]; then cp .env.example .env && echo "Created .env from .env.example — edit it with your values."; else echo ".env already exists."; fi
+    git config core.hooksPath .githooks
+    uv sync --extra dev

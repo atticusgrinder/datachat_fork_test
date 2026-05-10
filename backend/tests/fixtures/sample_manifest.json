@@ -1,0 +1,213 @@
+{
+  "metadata": {
+    "dbt_schema_version": "https://schemas.getdbt.com/dbt/manifest/v12/manifest.json",
+    "dbt_version": "1.7.0",
+    "generated_at": "2026-03-15T10:00:00Z",
+    "project_name": "jaffle_shop"
+  },
+  "nodes": {
+    "model.jaffle_shop.customers": {
+      "unique_id": "model.jaffle_shop.customers",
+      "resource_type": "model",
+      "name": "customers",
+      "schema": "public",
+      "database": "analytics",
+      "description": "This table has basic information about a customer, as well as some derived facts based on a customer's orders",
+      "columns": {
+        "customer_id": {
+          "name": "customer_id",
+          "description": "This is a unique identifier for a customer",
+          "data_type": "integer",
+          "tests": ["unique", "not_null"]
+        },
+        "first_name": {
+          "name": "first_name",
+          "description": "Customer's first name",
+          "data_type": "varchar",
+          "tests": []
+        },
+        "last_name": {
+          "name": "last_name",
+          "description": "Customer's last name",
+          "data_type": "varchar",
+          "tests": []
+        },
+        "first_order": {
+          "name": "first_order",
+          "description": "Date of first order",
+          "data_type": "date",
+          "tests": []
+        },
+        "most_recent_order": {
+          "name": "most_recent_order",
+          "description": "Date of most recent order",
+          "data_type": "date",
+          "tests": []
+        },
+        "number_of_orders": {
+          "name": "number_of_orders",
+          "description": "Count of the number of orders a customer has placed",
+          "data_type": "integer",
+          "tests": []
+        },
+        "customer_lifetime_value": {
+          "name": "customer_lifetime_value",
+          "description": "Total value of all orders placed",
+          "data_type": "numeric",
+          "tests": []
+        }
+      },
+      "tags": ["pii", "daily"],
+      "meta": {},
+      "config": {
+        "materialized": "table"
+      },
+      "refs": [
+        {"name": "stg_customers", "package": null, "version": null},
+        {"name": "stg_orders", "package": null, "version": null},
+        {"name": "stg_payments", "package": null, "version": null}
+      ],
+      "depends_on": {
+        "nodes": [
+          "model.jaffle_shop.stg_customers",
+          "model.jaffle_shop.stg_orders",
+          "model.jaffle_shop.stg_payments"
+        ],
+        "macros": []
+      },
+      "path": "customers.sql",
+      "raw_code": "SELECT * FROM {{ ref('stg_customers') }}"
+    },
+    "model.jaffle_shop.orders": {
+      "unique_id": "model.jaffle_shop.orders",
+      "resource_type": "model",
+      "name": "orders",
+      "schema": "public",
+      "database": "analytics",
+      "description": "This table has basic information about orders, as well as some derived facts based on payments",
+      "columns": {
+        "order_id": {
+          "name": "order_id",
+          "description": "This is a unique identifier for an order",
+          "data_type": "integer",
+          "tests": ["unique", "not_null"]
+        },
+        "customer_id": {
+          "name": "customer_id",
+          "description": "Foreign key to the customers table",
+          "data_type": "integer",
+          "tests": ["not_null"]
+        },
+        "order_date": {
+          "name": "order_date",
+          "description": "Date the order was placed",
+          "data_type": "date",
+          "tests": []
+        },
+        "status": {
+          "name": "status",
+          "description": "Order status",
+          "data_type": "varchar",
+          "tests": [{"accepted_values": {"values": ["placed", "shipped", "completed", "returned"]}}]
+        },
+        "amount": {
+          "name": "amount",
+          "description": "Total amount of the order in USD",
+          "data_type": "numeric",
+          "tests": []
+        }
+      },
+      "tags": ["daily"],
+      "meta": {},
+      "config": {
+        "materialized": "table"
+      },
+      "refs": [
+        {"name": "stg_orders", "package": null, "version": null},
+        {"name": "stg_payments", "package": null, "version": null}
+      ],
+      "depends_on": {
+        "nodes": [
+          "model.jaffle_shop.stg_orders",
+          "model.jaffle_shop.stg_payments"
+        ],
+        "macros": []
+      },
+      "path": "orders.sql",
+      "raw_code": "SELECT * FROM {{ ref('stg_orders') }}"
+    },
+    "model.jaffle_shop.stg_customers": {
+      "unique_id": "model.jaffle_shop.stg_customers",
+      "resource_type": "model",
+      "name": "stg_customers",
+      "schema": "public",
+      "database": "analytics",
+      "description": "Staging model for raw customers data",
+      "columns": {
+        "customer_id": {
+          "name": "customer_id",
+          "description": "Primary key",
+          "data_type": "integer",
+          "tests": ["unique", "not_null"]
+        }
+      },
+      "tags": ["staging"],
+      "meta": {},
+      "config": {
+        "materialized": "view"
+      },
+      "refs": [],
+      "depends_on": {
+        "nodes": ["source.jaffle_shop.raw.customers"],
+        "macros": []
+      },
+      "path": "staging/stg_customers.sql",
+      "raw_code": "SELECT * FROM {{ source('raw', 'customers') }}"
+    }
+  },
+  "sources": {
+    "source.jaffle_shop.raw.customers": {
+      "unique_id": "source.jaffle_shop.raw.customers",
+      "resource_type": "source",
+      "name": "customers",
+      "source_name": "raw",
+      "schema": "raw_data",
+      "database": "analytics",
+      "description": "Raw customers data from the production database",
+      "columns": {
+        "id": {
+          "name": "id",
+          "description": "Primary key",
+          "data_type": "integer",
+          "tests": []
+        },
+        "first_name": {
+          "name": "first_name",
+          "description": "",
+          "data_type": "varchar",
+          "tests": []
+        },
+        "last_name": {
+          "name": "last_name",
+          "description": "",
+          "data_type": "varchar",
+          "tests": []
+        }
+      },
+      "tags": [],
+      "meta": {},
+      "loader": "postgres",
+      "freshness": {
+        "warn_after": {"count": 12, "period": "hour"},
+        "error_after": {"count": 24, "period": "hour"}
+      },
+      "identifier": "raw_customers",
+      "depends_on": {
+        "nodes": [],
+        "macros": []
+      }
+    }
+  },
+  "metrics": {},
+  "semantic_models": {}
+}

@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+# Run backend tests if any backend files are staged
+if git diff --cached --name-only | grep -q '^backend/'; then
+    echo "Backend changes detected — running tests..."
+    cd backend
+    uv run pytest --tb=short -q
+    if [ $? -ne 0 ]; then
+        echo ""
+        echo "Backend tests failed. Commit aborted."
+        echo "Run 'just test' in backend/ to debug, or use --no-verify to skip."
+        exit 1
+    fi
+fi

@@ -1,0 +1,44 @@
+name: Changelog Check
+
+on:
+  pull_request:
+    branches: [main]
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Check for changelog entry
+        env:
+          PR_TITLE: ${{ github.event.pull_request.title }}
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+        run: |
+          if echo "$PR_TITLE" | grep -qF '[no-changelog]'; then
+            echo "PR title contains [no-changelog] — skipping check."
+            exit 0
+          fi
+
+          changed=$(git diff --name-only "$BASE_SHA" "$HEAD_SHA")
+          echo "Changed files:"
+          echo "$changed"
+
+          user_facing=$(echo "$changed" | grep -E '^(backend/app/|frontend/src/)' || true)
+          if [ -z "$user_facing" ]; then
+            echo "No user-facing code changes — skipping check."
+            exit 0
+          fi
+
+          added_changelog=$(git diff --name-only --diff-filter=A "$BASE_SHA" "$HEAD_SHA" | grep -E '^backend/changelogs/.+\.md$' || true)
+          if [ -z "$added_changelog" ]; then
+            echo "::error::This PR touches user-facing code (backend/app/ or frontend/src/) but adds no entry in backend/changelogs/."
+            echo "::error::Add a new changelog entry, or include [no-changelog] in the PR title for infra-only changes."
+            exit 1
+          fi
+
+          echo "Found new changelog entry:"
+          echo "$added_changelog"

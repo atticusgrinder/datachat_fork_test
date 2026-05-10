@@ -1,0 +1,4 @@
+*.db
+*.duckdb
+local_duckdb/
+gcp-credentials.json
