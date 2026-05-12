@@ -61,6 +61,7 @@ import excelLogo from "@/assets/excel-logo.svg";
 import duckdbLogo from "@/assets/duckdb-logo.svg";
 import redshiftLogo from "@/assets/redshift-logo.png";
 import FileUploadZone from "@/components/FileUploadZone";
+import { AnthropicKeyCard } from "@/components/AnthropicKeyCard";
 
 // Static warehouse options (fallback if API unavailable)
 const staticWarehouseTypes: Record<string, { name: string; description: string; required_fields: string[]; field_hints?: Record<string, string> }> = {
@@ -1453,6 +1454,9 @@ export default function SettingsPage() {
             )}
           </CardContent>
         </Card>
+
+        {/* API key (admin only — card hides itself for non-admins) */}
+        <AnthropicKeyCard />
 
         {/* Plan Section — hidden when billing isn't configured (self-hosted) */}
         {billingEnabled && (

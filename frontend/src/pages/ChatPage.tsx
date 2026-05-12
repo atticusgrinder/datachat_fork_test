@@ -5,6 +5,7 @@ import { api, ApiError, Conversation, Message, VisualizationConfig, FileSessionR
 import { useStreamingChat } from "@/hooks/use-streaming-chat";
 import ResponseMetadata, { formatTimestamp } from "@/components/ResponseMetadata";
 import UsageBanner from "@/components/UsageBanner";
+import { MissingAnthropicKeyBanner } from "@/components/MissingAnthropicKeyBanner";
 import InlineVisualization from "@/components/InlineVisualization";
 import SaveVisualizationModal from "@/components/SaveVisualizationModal";
 
@@ -1204,6 +1205,7 @@ export default function ChatPage() {
           </div>
         </header>
 
+        <MissingAnthropicKeyBanner />
 
         {/* Welcome screens - centered */}
         {isLoadingWarehouses ? (
